@@ -45,4 +45,5 @@ class Bitmap
 	      puts
 	    end
   	end
+  	
 end

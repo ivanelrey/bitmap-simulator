@@ -66,4 +66,5 @@ describe Bitmap do
 	    end.to output("OOOOO\nOOZZZ\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n").to_stdout
 
 	end
+	
 end
