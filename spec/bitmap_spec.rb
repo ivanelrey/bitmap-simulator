@@ -23,4 +23,23 @@ describe Bitmap do
 		expect(bitmap.bitmap[0][2]).to eq("A")
 	end
 
+	it "draws a vertical segment at column 2 and rows from 3 to 6, with colour 'W'" do 
+		bitmap = Bitmap.new(5,6,"O")
+		bitmap.create_bitmap
+		bitmap.draw_vertical_segment(2,3,6,"W") # Command 'V' params '2 3 6 W'
+		expect(bitmap.bitmap[2][1]).to eq("W")
+		expect(bitmap.bitmap[3][1]).to eq("W")
+		expect(bitmap.bitmap[4][1]).to eq("W")
+		expect(bitmap.bitmap[5][1]).to eq("W")
+	end
+
+	it "draws a horizontal segment at row 2 and columns from 3 to 5 with colour 'Z'" do 
+		bitmap = Bitmap.new(5,6,"O")
+		bitmap.create_bitmap
+		bitmap.draw_horizontal_segment(3,5,2,"Z") # Command 'H' params '3 5 2 Z'
+		expect(bitmap.bitmap[1][2]).to eq("Z")
+		expect(bitmap.bitmap[1][3]).to eq("Z")
+		expect(bitmap.bitmap[1][4]).to eq("Z")
+	end
+
 end
