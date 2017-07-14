@@ -52,4 +52,11 @@ describe Bitmap do
 		expect(bitmap.bitmap).to eq(Array.new(6) { Array.new(5) { "O" }})
 	end
 
+	it "prints the bitmap 5 x 6 filled with 'O's " do 
+		bitmap = Bitmap.new(5,6,"O")
+		bitmap.create_bitmap
+		expect do
+      	bitmap.print_bitmap
+	    end.to output("OOOOO\nOOOOO\nOOOOO\nOOOOO\nOOOOO\nOOOOO\n").to_stdout
+	end
 end

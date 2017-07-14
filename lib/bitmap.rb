@@ -36,4 +36,13 @@ class Bitmap
 	def clear_bitmap
 		create_bitmap # Reinitilialize the bitmap
 	end
+
+	def print_bitmap
+    	@bitmap.each do |row|
+	      row.each do |cell|
+	        print cell 
+	      end
+	      puts
+	    end
+  	end
 end
