@@ -7,7 +7,6 @@ describe Bitmap do
 	end
 
 	it "initializes the required params for the bitmap. Rows, cols numbers and init colour" do 
-		
 		expect(@bitmap.rows_number).to eq(5)
 		expect(@bitmap.cols_number).to eq(6)
 		expect(@bitmap.init_colour).to eq('O')
@@ -21,7 +20,7 @@ describe Bitmap do
 	it "draws the pixel 1,3 with colour 'A'" do 
 		@bitmap.create_bitmap
 		@bitmap.draw_pixel(1,3,"A") # Command 'L' params '1 3 A'
-		expect(@bitmap.bitmap[0][2]).to eq("A")
+		expect(@bitmap.bitmap[2][0]).to eq("A")
 	end
 
 	it "draws a vertical segment at column 2 and rows from 3 to 6, with colour 'W'" do 
@@ -46,14 +45,25 @@ describe Bitmap do
 		@bitmap.draw_pixel(1,3,"A")
 		@bitmap.draw_vertical_segment(2,3,6,"W")
 		@bitmap.draw_horizontal_segment(3,5,2,"Z")
-		@bitmap.clear_bitmap
+		@bitmap.clear_bitmap # Commmand 'C'
 		expect(@bitmap.bitmap).to eq(Array.new(6) { Array.new(5) { "O" }})
 	end
 
 	it "prints the bitmap 5 x 6 filled with 'O's " do 
 		@bitmap.create_bitmap
 		expect do
-      	@bitmap.print_bitmap
+      	@bitmap.print_bitmap # Command 'S'
 	    end.to output("OOOOO\nOOOOO\nOOOOO\nOOOOO\nOOOOO\nOOOOO\n").to_stdout
+	end
+
+	it "executes all the commands and prints the coloured bitmap" do 
+		@bitmap.create_bitmap # Command 'I'
+		@bitmap.draw_pixel(1,3,"A") # Command 'L' params '1 3 A'
+		@bitmap.draw_vertical_segment(2,3,6,"W") # Command 'V' params '2 3 6 W'
+		@bitmap.draw_horizontal_segment(3,5,2,"Z") # Command 'H' params '3 5 2 Z'
+		expect do
+      	@bitmap.print_bitmap # Command 'S'
+	    end.to output("OOOOO\nOOZZZ\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n").to_stdout
+
 	end
 end

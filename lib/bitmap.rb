@@ -12,7 +12,7 @@ class Bitmap
 	end
 
 	def draw_pixel(x,y,colour)
-		@bitmap[x.to_i-1][y.to_i-1] = colour
+		@bitmap[y.to_i-1][x.to_i-1] = colour
 	end
 
 	def draw_vertical_segment(column, start_row_pixel, end_row_pixel, colour)
@@ -20,7 +20,7 @@ class Bitmap
 	      start_row_pixel,end_row_pixel = end_row_pixel,start_row_pixel
 	    end
 	    for row_pixel in (start_row_pixel..end_row_pixel)
-	      draw_pixel(row_pixel,column,colour)
+	      draw_pixel(column,row_pixel,colour)
 	    end
 	end
 
@@ -29,7 +29,7 @@ class Bitmap
 	      start_col_pixel,end_col_pixel = end_col_pixel,start_col_pixel
 	    end
 	    for col_pixel in (start_col_pixel..end_col_pixel)
-	      draw_pixel(row,col_pixel,colour)
+	      draw_pixel(col_pixel,row,colour)
 	    end
 	end
 
