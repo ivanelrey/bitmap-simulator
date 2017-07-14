@@ -32,4 +32,8 @@ class Bitmap
 	      draw_pixel(row,col_pixel,colour)
 	    end
 	end
+
+	def clear_bitmap
+		create_bitmap # Reinitilialize the bitmap
+	end
 end

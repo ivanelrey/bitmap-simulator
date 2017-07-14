@@ -42,4 +42,14 @@ describe Bitmap do
 		expect(bitmap.bitmap[1][4]).to eq("Z")
 	end
 
+	it "clears the bitmap from added colours" do 
+		bitmap = Bitmap.new(5,6,"O")
+		bitmap.create_bitmap
+		bitmap.draw_pixel(1,3,"A")
+		bitmap.draw_vertical_segment(2,3,6,"W")
+		bitmap.draw_horizontal_segment(3,5,2,"Z")
+		bitmap.clear_bitmap
+		expect(bitmap.bitmap).to eq(Array.new(6) { Array.new(5) { "O" }})
+	end
+
 end
