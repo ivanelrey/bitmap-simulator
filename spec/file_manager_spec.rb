@@ -22,10 +22,22 @@ describe FileManager do |example|
 		expect(@f.max_columns).to eq(250)
 	end
 
-	it "stops reading the file because the first command is not 'I'(to initialize the bitmap).", :skip_before do 
-		@f1= FileManager.new("./spec/spec_examples/the_first_cmd_not_init.txt")
-		@f1.read_file
-		expect(@f1.errors_found_in_file[0]).to eq("First command must be 'I' to initialize the bitmap.")
+	it "stops reading the file because the first command is not 'I'(to initialize the bitmap)", :skip_before do 
+		@f= FileManager.new("./spec/spec_examples/the_first_cmd_not_init.txt")
+		@f.read_file
+		expect(@f.errors_found_in_file[0]).to eq("First command must be 'I' to initialize the bitmap.")
 	end
 
+	it "adds error if lower case command found", :skip_before do 
+		@f= FileManager.new("./spec/spec_examples/contains_lower_case_cmd.txt")
+		@f.read_file
+		expect(@f.errors_found_in_file[0]).to eq("Commands must be only capital letters.")
+	end
+
+	it "adds error if unrecognized command found", :skip_before do 
+		@f= FileManager.new("./spec/spec_examples/contains_unknown_cmd.txt")
+		@f.read_file
+		expect(@f.errors_found_in_file[0]).to eq("Unrecognised command :(.")
+	end
+	
 end

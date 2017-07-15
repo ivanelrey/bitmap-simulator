@@ -35,6 +35,31 @@ class FileManager
 	      	@errors_found_in_file << "First command must be 'I' to initialize the bitmap."
 	      	return
 	      end
+	      check_line(line, line_number)
 	  	end
   	end
+
+  	def check_line(line,line_number)
+		case line[0]
+		when @init_bitmap
+			#check for the init command
+		when @colour_pixel
+	  		#check for the draw pixel command
+		when @draw_vertical_segment
+	  		#check for the draw vertical segment command
+		when @draw_horizontal_segment
+	  		#check for the draw vertical segment command
+		when @clear
+	  		#check for the clear command
+		when @show_command
+			#check for the show command
+		else
+		  	if (line[0] != line[0].upcase)
+				@errors_found_in_file << "Commands must be only capital letters."
+			else
+		    	@errors_found_in_file << "Unrecognised command :(."
+		  	end
+		end		
+	end
+
 end
