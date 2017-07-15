@@ -25,11 +25,11 @@ gem 'json'
 # Install Gems
 ```sh
 bundle install
+```
 
 # Run RSpec examples
 ```sh
 bundle exec rspec
-```
 ```
 
 # Supported Commands
