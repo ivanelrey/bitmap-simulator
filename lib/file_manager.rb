@@ -77,7 +77,7 @@ class FileManager
       		check_param_is_int_and_in_range(1, @max_rows, line_number, line[2])
       		@given_rows_number = line[2].to_i
 		    @given_cols_number = line[1].to_i
-		    @bitmap_initialized = true
+		    @errors_found_in_file.any? ? @bitmap_initialized = false : @bitmap_initialized = true
     	end
 	end
 
