@@ -44,7 +44,7 @@ class FileManager
 		when @init_bitmap
 			check_init_command(line, line_number)
 		when @colour_pixel
-	  		#check for the draw pixel command
+	  		check_colour_pixel_command(line, line_number)
 		when @draw_vertical_segment
 	  		#check for the draw vertical segment command
 		when @draw_horizontal_segment
@@ -66,14 +66,22 @@ class FileManager
 	    if line_number != 1
 	      @errors_found_in_file << "You can initialize the bitmap only in the first line."
 	      return
-	    end
-		if check_params_size(line.size - 1, 2, line_number) #line.size = command + params 
+	    end 
+      	@given_rows_number = line[2].to_i
+      	@given_cols_number = line[1].to_i
+		if check_params_size(line.size - 1, 2, line_number) #line.size = command + params
   			check_param_is_int_and_in_range(1, @max_columns, line_number, line[1])
       		check_param_is_int_and_in_range(1, @max_rows, line_number, line[2])
-      		@given_rows_number = line[2].to_i
-      		@given_cols_number = line[1].to_i
     	end
 	end
+
+	def check_colour_pixel_command(line, line_number)
+	    if check_params_size(line.size - 1, 3, line_number) 
+	      check_param_is_int_and_in_range(1, @given_cols_number, line_number, line[1])
+	      check_param_is_int_and_in_range(1, @given_rows_number, line_number, line[2])
+	      check_colour_param_is_capital_letter(line[3], line_number)
+	    end
+  	end
 
 	def check_params_size(params_size, valid_params_size, line_number)
 		if params_size != valid_params_size
@@ -92,6 +100,12 @@ class FileManager
 	    else
 	      @errors_found_in_file << "Params for bitmap pixels must be integers."
 	    end
+  	end
+
+  	def check_colour_param_is_capital_letter(colour_param, line_number)
+    	if !(colour_param.length == 1 && colour_param.between?("A", "Z"))
+      		@errors_found_in_file << "Param for colour must be a Capital letter (A .. Z)."
+    	end
   	end
 
   	def param_is_integer?(param)

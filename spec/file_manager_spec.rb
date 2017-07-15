@@ -58,4 +58,10 @@ describe FileManager do |example|
 		expect(@f.errors_found_in_file[0]).to eq("Params for bitmap pixels must be integers.")
 	end
 
+	it "adds error if colour param is not from 'A' to 'Z'", :skip_before do 
+		@f= FileManager.new("./spec/spec_examples/colour_param_is_not_valid.txt")
+		@f.read_file
+		expect(@f.errors_found_in_file[0]).to eq("Param for colour must be a Capital letter (A .. Z).")
+	end
+
 end
