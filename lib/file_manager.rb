@@ -139,4 +139,13 @@ class FileManager
     	!!(param !~ /\D/) 
   	end
 
+  	def show_errors
+	    if @errors_found_in_file.any?
+	      @errors_found_in_file.each do | error |
+	        puts error
+	      end
+	    end
+	    exit
+	end
+
 end

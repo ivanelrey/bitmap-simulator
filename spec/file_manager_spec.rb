@@ -77,10 +77,17 @@ describe FileManager do |example|
 	end
 
 	it "adds errors that command clear and show has wrong params", :skip_before do 
-		@f= FileManager.new("./spec/spec_examples/clear_show_cmds_wrong_param.txt")
+		@f= FileManager.new("./spec/spec_examples/clear_show_cmds_wrong_params.txt")
 		@f.read_file
 		expect(@f.errors_found_in_file[0]).to eq("Wrong number of parameteres.")
-		expect(@f.errors_found_in_file[0]).to eq("Wrong number of parameteres.")
+		expect(@f.errors_found_in_file[1]).to eq("Wrong number of parameteres.")
+	end
+
+	it "prints the errors", :skip_before do 
+		@f= FileManager.new("./spec/spec_examples/clear_show_cmds_wrong_params.txt")
+		@f.read_file
+		expected_errors = "Wrong number of parameteres.\nWrong number of parameteres.\n"
+		expect { @f.show_errors }.to output(expected_errors).to_stdout
 	end
 
 end
