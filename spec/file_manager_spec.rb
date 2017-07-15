@@ -10,6 +10,7 @@ describe FileManager do
 	it "initializes init variables" do 
 		expect(@f.file).to eq("./lib/show.txt")
 		expect(@f.init_colour).to eq("O")
+		expect(@f.init_bitmap).to eq("I")
 		expect(@f.clear).to eq("C")
 		expect(@f.colour_pixel).to eq("L")
 		expect(@f.draw_vertical_segment).to eq("V")
