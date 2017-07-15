@@ -60,16 +60,16 @@ class FileManager
 			check_show_command(line, line_number)
 		else
 		  	if (line[0] != line[0].upcase)
-				@errors_found_in_file << "Commands must be only capital letters."
+				@errors_found_in_file << "#{Errors.fetch("error_in_line")}#{line_number}: " + "#{Errors.fetch("found_lower_case")}"
 			else
-		    	@errors_found_in_file << "Unrecognised command :(."
+		    	@errors_found_in_file << "#{Errors.fetch("error_in_line")}#{line_number}: " + "#{Errors.fetch("unrecognized_command")}"
 		  	end
 		end		
 	end
 
 	def check_init_command(line, line_number)
 	    if line_number != 1
-	      @errors_found_in_file << "You can initialize the bitmap only in the first line."
+	      @errors_found_in_file << "#{Errors.fetch("error_in_line")}#{line_number}: " + "#{Errors.fetch("wrong_line_to_init")}"
 	      return
 	    end
 		if check_params_size(line.size - 1, 2, line_number) #line.size = command + params
@@ -117,7 +117,7 @@ class FileManager
 
 	def check_params_size(params_size, valid_params_size, line_number)
 		if params_size != valid_params_size
-			@errors_found_in_file << "Wrong number of parameteres."
+			@errors_found_in_file << "#{Errors.fetch("error_in_line")}#{line_number}: " +  "#{Errors.fetch("invalid_parameters")}#{valid_params_size} "
       		false
     	else
       		true
@@ -127,16 +127,16 @@ class FileManager
 	def check_param_is_int_and_in_range(min_number, max_number, line_number, param)
 	    if param_is_integer?(param)
 	      if !param.to_i.between?(min_number, max_number)
-	        @errors_found_in_file << "Param is not in the correct range of numbers"
+	        @errors_found_in_file << "#{Errors.fetch("error_in_line")}#{line_number}: " + "#{Errors.fetch("wrong_param")}'#{param}'. " + "#{Errors.fetch("not_in_range")} " + "(#{min_number} .. #{max_number})"
 	      end
 	    else
-	      @errors_found_in_file << "Params for bitmap pixels must be integers."
+	      @errors_found_in_file << "#{Errors.fetch("error_in_line")}#{line_number}: " + "#{Errors.fetch("wrong_param")}'#{param}'." + "#{Errors.fetch("not_an_integer")} "
 	    end
   	end
 
   	def check_colour_param_is_capital_letter(colour_param, line_number)
     	if !(colour_param.length == 1 && colour_param.between?("A", "Z"))
-      		@errors_found_in_file << "Param for colour must be a Capital letter (A .. Z)."
+      		@errors_found_in_file << "#{Errors.fetch("error_in_line")}#{line_number}: " + "#{Errors.fetch("wrong_param")}'#{colour_param}'." + "#{Errors.fetch("not_a_capital_letter")}"
     	end
   	end
 
@@ -150,7 +150,19 @@ class FileManager
 	        puts error
 	      end
 	    end
-	    exit
 	end
+
+	Errors = {
+    "error_in_line" => "ERROR in line ",
+    "found_lower_case" => "A command must be a capital letter.",
+    "unrecognized_command" => "Unrecognised command :(.",
+    "wrong_line_to_init" => "You can initialize the bitmap only in the first line.",
+    "found_command_before_init" => "Before any action you must initialize your bitmap.",
+    "invalid_parameters" => "Number of parameteres for this command is ",
+    "wrong_param" => "Wrong param ",
+    "not_in_range" => "The current param must be in range",
+    "not_an_integer" => "The current param must be an integer.",
+    "not_a_capital_letter" => "Param must be a Capital letter (A .. Z)."
+  }.freeze
 
 end

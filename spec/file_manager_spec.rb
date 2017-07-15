@@ -26,56 +26,56 @@ describe FileManager do |example|
 	it "adds error if lower case command found" do 
 		@f= FileManager.new("./spec/spec_examples/contains_lower_case_cmd.txt")
 		@f.read_file
-		expect(@f.errors_found_in_file[0]).to eq("Commands must be only capital letters.")
+		expect(@f.errors_found_in_file[0]).to eq("ERROR in line 2: A command must be a capital letter.")
 	end
 
 	it "adds error if unrecognized command found" do 
 		@f= FileManager.new("./spec/spec_examples/contains_unknown_cmd.txt")
 		@f.read_file
-		expect(@f.errors_found_in_file[0]).to eq("Unrecognised command :(.")
+		expect(@f.errors_found_in_file[0]).to eq("ERROR in line 2: Unrecognised command :(.")
 	end
 
 	it "adds error if params size for init command is not correct" do 
 		@f= FileManager.new("./spec/spec_examples/wrong_size_of_params.txt")
 		@f.read_file
-		expect(@f.errors_found_in_file[0]).to eq("Wrong number of parameteres.")
+		expect(@f.errors_found_in_file[0]).to eq("ERROR in line 1: Number of parameteres for this command is 2 ")
 	end
 
 	it "adds error if param is out of min - max range" do 
 		@f= FileManager.new("./spec/spec_examples/param_out_of_range.txt")
 		@f.read_file
-		expect(@f.errors_found_in_file[0]).to eq("Param is not in the correct range of numbers")
+		expect(@f.errors_found_in_file[0]).to eq("ERROR in line 1: Wrong param '300'. The current param must be in range (1 .. 250)")
 	end
 
 	it "adds error if pixel param is not integer" do 
 		@f= FileManager.new("./spec/spec_examples/pixel_param_is_not_integer.txt")
 		@f.read_file
-		expect(@f.errors_found_in_file[0]).to eq("Params for bitmap pixels must be integers.")
+		expect(@f.errors_found_in_file[0]).to eq("ERROR in line 1: Wrong param 'S'.The current param must be an integer. ")
 	end
 
 	it "adds error if colour param is not from 'A' to 'Z'" do 
 		@f= FileManager.new("./spec/spec_examples/colour_param_is_not_valid.txt")
 		@f.read_file
-		expect(@f.errors_found_in_file[0]).to eq("Param for colour must be a Capital letter (A .. Z).")
+		expect(@f.errors_found_in_file[0]).to eq("ERROR in line 2: Wrong param 'ss'.Param must be a Capital letter (A .. Z).")
 	end
 
 	it "adds error if vertical segment command has wrong params" do 
 		@f= FileManager.new("./spec/spec_examples/vertical_cmd_wrong_params.txt")
 		@f.read_file
-		expect(@f.errors_found_in_file[0]).to eq("Wrong number of parameteres.")
+		expect(@f.errors_found_in_file[0]).to eq("ERROR in line 3: Number of parameteres for this command is 4 ")
 	end
 
 	it "adds error if horizontal segment command has wrong colour params" do 
 		@f= FileManager.new("./spec/spec_examples/horizontal_cmd_wrong_colour_param.txt")
 		@f.read_file
-		expect(@f.errors_found_in_file[0]).to eq("Param for colour must be a Capital letter (A .. Z).")
+		expect(@f.errors_found_in_file[0]).to eq("ERROR in line 4: Wrong param '5'.Param must be a Capital letter (A .. Z).")
 	end
 
 	it "adds errors that command clear and show has wrong params" do 
 		@f= FileManager.new("./spec/spec_examples/clear_show_cmds_wrong_params.txt")
 		@f.read_file
-		expect(@f.errors_found_in_file[0]).to eq("Wrong number of parameteres.")
-		expect(@f.errors_found_in_file[1]).to eq("Wrong number of parameteres.")
+		expect(@f.errors_found_in_file[0]).to eq("ERROR in line 5: Number of parameteres for this command is 0 ")
+		expect(@f.errors_found_in_file[1]).to eq("ERROR in line 6: Number of parameteres for this command is 0 ")
 	end
 
 	it "should not have any errors" do
@@ -103,7 +103,7 @@ describe FileManager do |example|
 	it "prints the errors" do 
 		@f= FileManager.new("./spec/spec_examples/clear_show_cmds_wrong_params.txt")
 		@f.read_file
-		expected_errors = "Wrong number of parameteres.\nWrong number of parameteres.\n"
+		expected_errors = "ERROR in line 5: Number of parameteres for this command is 0 \nERROR in line 6: Number of parameteres for this command is 0 \n"
 		expect { @f.show_errors }.to output(expected_errors).to_stdout
 	end
 

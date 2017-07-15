@@ -9,7 +9,12 @@ class BitmapEditor
     f.read_file
     
     # Check the file, if there are any errors print them and exit, otherwise execute the commands.
-    f.errors_found_in_file.any? ? f.show_errors : execute_commands(file,f) 
+    if f.errors_found_in_file.any?
+      f.show_errors
+      exit
+    else
+      execute_commands(file,f)
+    end 
 
   end
 
