@@ -51,9 +51,8 @@ describe Bitmap do
 
 	it "prints the bitmap 5 x 6 filled with 'O's " do 
 		@bitmap.create_bitmap
-		expect do
-      	@bitmap.print_bitmap # Command 'S'
-	    end.to output("OOOOO\nOOOOO\nOOOOO\nOOOOO\nOOOOO\nOOOOO\n").to_stdout
+		expected_bitmap_format = "OOOOO\nOOOOO\nOOOOO\nOOOOO\nOOOOO\nOOOOO\n"
+		expect { @bitmap.print_bitmap }.to output(expected_bitmap_format).to_stdout
 	end
 
 	it "executes all the commands and prints the coloured bitmap" do 
@@ -61,9 +60,8 @@ describe Bitmap do
 		@bitmap.draw_pixel(1,3,"A") # Command 'L' params '1 3 A'
 		@bitmap.draw_vertical_segment(2,3,6,"W") # Command 'V' params '2 3 6 W'
 		@bitmap.draw_horizontal_segment(3,5,2,"Z") # Command 'H' params '3 5 2 Z'
-		expect do
-      	@bitmap.print_bitmap # Command 'S'
-	    end.to output("OOOOO\nOOZZZ\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n").to_stdout
+		expected_bitmap_format = "OOOOO\nOOZZZ\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n"
+	    expect { @bitmap.print_bitmap }.to output(expected_bitmap_format).to_stdout
 
 	end
 	
