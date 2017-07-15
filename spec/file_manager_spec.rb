@@ -39,5 +39,23 @@ describe FileManager do |example|
 		@f.read_file
 		expect(@f.errors_found_in_file[0]).to eq("Unrecognised command :(.")
 	end
-	
+
+	it "adds error if params size for init command is not correct", :skip_before do 
+		@f= FileManager.new("./spec/spec_examples/wrong_size_of_params.txt")
+		@f.read_file
+		expect(@f.errors_found_in_file[0]).to eq("Wrong number of parameteres.")
+	end
+
+	it "adds error if param is out of min - max range", :skip_before do 
+		@f= FileManager.new("./spec/spec_examples/param_out_of_range.txt")
+		@f.read_file
+		expect(@f.errors_found_in_file[0]).to eq("Param is not in the correct range of numbers")
+	end
+
+	it "adds error if pixel param is not integer", :skip_before do 
+		@f= FileManager.new("./spec/spec_examples/pixel_param_is_not_integer.txt")
+		@f.read_file
+		expect(@f.errors_found_in_file[0]).to eq("Params for bitmap pixels must be integers.")
+	end
+
 end
