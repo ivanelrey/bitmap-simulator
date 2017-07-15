@@ -66,17 +66,18 @@ class FileManager
 	    if line_number != 1
 	      @errors_found_in_file << "You can initialize the bitmap only in the first line."
 	      return
-	    end 
-      	@given_rows_number = line[2].to_i
-      	@given_cols_number = line[1].to_i
+	    end
 		if check_params_size(line.size - 1, 2, line_number) #line.size = command + params
   			check_param_is_int_and_in_range(1, @max_columns, line_number, line[1])
       		check_param_is_int_and_in_range(1, @max_rows, line_number, line[2])
+      		@given_rows_number = line[2].to_i
+		    @given_cols_number = line[1].to_i
+		    @bitmap_initialized = true
     	end
 	end
 
 	def check_colour_pixel_command(line, line_number)
-	    if check_params_size(line.size - 1, 3, line_number) 
+	    if check_params_size(line.size - 1, 3, line_number) and @bitmap_initialized 
 	      check_param_is_int_and_in_range(1, @given_cols_number, line_number, line[1])
 	      check_param_is_int_and_in_range(1, @given_rows_number, line_number, line[2])
 	      check_colour_param_is_capital_letter(line[3], line_number)
