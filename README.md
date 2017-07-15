@@ -43,6 +43,9 @@ bundle exec rspec
 | C | - | Clears the table, setting all pixels to white (O). |
 | S | - | Show the contents of the current image. |
 
+Note:
+If any wrong param is inputed, it will print error.
+
 ### Extra Command
 
 | Command | Parameters | Does |
@@ -50,7 +53,7 @@ bundle exec rspec
 | D | X1 Y1 X2 Y2 I | Draw a diagonal line of colour I, start from X1,Y1 and end at X2,Y2 |
 
 Note:
-If given pixels don't create a diagonal line it will prin error.
+If given pixels don't create a diagonal line, it will print error.
 
 
 # Program input
