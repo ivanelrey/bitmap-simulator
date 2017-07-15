@@ -76,4 +76,11 @@ describe FileManager do |example|
 		expect(@f.errors_found_in_file[0]).to eq("Param for colour must be a Capital letter (A .. Z).")
 	end
 
+	it "adds errors that command clear and show has wrong params", :skip_before do 
+		@f= FileManager.new("./spec/spec_examples/clear_show_cmds_wrong_param.txt")
+		@f.read_file
+		expect(@f.errors_found_in_file[0]).to eq("Wrong number of parameteres.")
+		expect(@f.errors_found_in_file[0]).to eq("Wrong number of parameteres.")
+	end
+
 end

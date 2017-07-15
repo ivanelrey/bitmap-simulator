@@ -50,9 +50,9 @@ class FileManager
 		when @draw_horizontal_segment
 	  		check_draw_horizontal_segment_command(line, line_number)
 		when @clear
-	  		#check for the clear command
+	  		check_clear_command(line, line_number)
 		when @show_command
-			#check for the show command
+			check_show_command(line, line_number)
 		else
 		  	if (line[0] != line[0].upcase)
 				@errors_found_in_file << "Commands must be only capital letters."
@@ -101,6 +101,14 @@ class FileManager
 	      check_colour_param_is_capital_letter(line[4], line_number)
 	    end
   	end
+
+  	def check_clear_command(line, line_number) 
+	    check_params_size(line.size - 1, 0, line_number)
+	end
+
+	def check_show_command(line, line_number)
+	    check_params_size(line.size - 1, 0, line_number)
+	end
 
 	def check_params_size(params_size, valid_params_size, line_number)
 		if params_size != valid_params_size
