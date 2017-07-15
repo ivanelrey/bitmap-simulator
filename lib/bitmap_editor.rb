@@ -29,11 +29,13 @@ class BitmapEditor
       when f.init_bitmap
         b.create_bitmap
       when f.colour_pixel
-        b.draw_pixel(line[1], line[2], line[3])
+        b.draw_pixel(line[1].to_i, line[2].to_i, line[3])
       when f.draw_vertical_segment
-        b.draw_vertical_segment(line[1], line[2], line[3], line[4])
+        b.draw_vertical_segment(line[1].to_i, line[2].to_i, line[3].to_i, line[4])
       when f.draw_horizontal_segment
-        b.draw_horizontal_segment(line[1], line[2], line[3], line[4])
+        b.draw_horizontal_segment(line[1].to_i, line[2].to_i, line[3].to_i, line[4])
+      when f.draw_diagonal_segment
+        b.draw_diagonal_segment(line[1].to_i, line[2].to_i, line[3].to_i, line[4].to_i, line[5])
       when f.clear
         b.clear_bitmap
       when f.show_command

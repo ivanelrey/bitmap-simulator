@@ -48,7 +48,7 @@ describe FileManager do |example|
 	it "adds error if unrecognized command found" do 
 		out_file = File.new("./spec/test.txt", "w+")
 		out_file.puts("I 5 6")
-		out_file.puts("D 1 3 A")
+		out_file.puts("K 1 3 A")
 		out_file.puts("S")
 		out_file.close
 		@f= FileManager.new("./spec/test.txt")
@@ -59,7 +59,7 @@ describe FileManager do |example|
 	it "adds error if params size for init command is not correct" do 
 		out_file = File.new("./spec/test.txt", "w+")
 		out_file.puts("I 5")
-		out_file.puts("D 1 3 A")
+		out_file.puts("L 1 3 A")
 		out_file.puts("S")
 		out_file.close
 		@f= FileManager.new("./spec/test.txt")
@@ -70,7 +70,7 @@ describe FileManager do |example|
 	it "adds error if param is out of min - max range" do 
 		out_file = File.new("./spec/test.txt", "w+")
 		out_file.puts("I 5 300")
-		out_file.puts("D 1 3 A")
+		out_file.puts("L 1 3 A")
 		out_file.puts("S")
 		out_file.close
 		@f= FileManager.new("./spec/test.txt")
@@ -182,6 +182,18 @@ describe FileManager do |example|
 		@f.read_file
 		expected_errors = "ERROR in line 5: Number of parameteres for this command is 0 \nERROR in line 6: Number of parameteres for this command is 0 \n"
 		expect { @f.show_errors }.to output(expected_errors).to_stdout
+	end
+
+	it "adds error that given pixels don't create diagonal line" do 
+		out_file = File.new("./spec/test.txt", "w+")
+		out_file.puts("I 5 6")
+		out_file.puts("D 1 3 3 4 I") # 1,3 and 3,4 are not the samxe 'diagonal' line
+		out_file.puts("S")
+		out_file.close
+		@f= FileManager.new("./spec/test.txt")
+		@f.read_file
+		expect(@f.errors_found_in_file[0]).to eq("ERROR in line 2: The given pixels are not on the same diagonal line.")
+
 	end
 
 end

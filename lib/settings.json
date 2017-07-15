@@ -7,5 +7,6 @@
   "show_command": "S",
   "init_colour": "O",
   "max_rows": 250,
-  "max_columns": 250
+  "max_columns": 250,
+  "draw_diagonal_segment": "D"
 }

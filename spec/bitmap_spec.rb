@@ -66,7 +66,7 @@ describe Bitmap do
 	
 	it "draws a diagonal segment from left/top to right/bottom" do 
 		@bitmap.create_bitmap
-		@bitmap.draw_diagonal_segment(1,2,5,6,'I')
+		@bitmap.draw_diagonal_segment(1,2,5,6,'I') # Command 'd' params '1 2 5 6 I'
 		expected_bitmap_format = "OOOOO\nIOOOO\nOIOOO\nOOIOO\nOOOIO\nOOOOI\n"
 	    expect { @bitmap.print_bitmap }.to output(expected_bitmap_format).to_stdout
 	end
