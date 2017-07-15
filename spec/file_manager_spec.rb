@@ -24,7 +24,8 @@ describe FileManager do |example|
 
 	it "stops reading the file because the first command is not 'I'(to initialize the bitmap).", :skip_before do 
 		@f1= FileManager.new("./spec/spec_examples/the_first_cmd_not_init.txt")
-		expect(@f1.read_file).to eq("First command must be 'I' to initialize the bitmap.")
+		@f1.read_file
+		expect(@f1.errors_found_in_file[0]).to eq("First command must be 'I' to initialize the bitmap.")
 	end
 
 end

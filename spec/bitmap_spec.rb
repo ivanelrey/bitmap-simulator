@@ -62,7 +62,6 @@ describe Bitmap do
 		@bitmap.draw_horizontal_segment(3,5,2,"Z") # Command 'H' params '3 5 2 Z'
 		expected_bitmap_format = "OOOOO\nOOZZZ\nAWOOO\nOWOOO\nOWOOO\nOWOOO\n"
 	    expect { @bitmap.print_bitmap }.to output(expected_bitmap_format).to_stdout
-
 	end
 	
 end

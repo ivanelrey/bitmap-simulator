@@ -1,10 +1,12 @@
 class FileManager 
 	require 'json'
 	attr_accessor :init_colour, :init_bitmap, :colour_pixel, :draw_vertical_segment,
-                  :draw_horizontal_segment, :show_command, :clear, :max_rows, :max_columns, :file
+                  :draw_horizontal_segment, :show_command, :clear, :max_rows, :max_columns, :file,
+                  :errors_found_in_file
 
 	def initialize(file)
 		@file = file
+		@errors_found_in_file = Array.new
 		init_settings
 	end
 
@@ -30,7 +32,8 @@ class FileManager
 	      line_number = line_number + 1
 	      line = line.gsub(/\s+/m, ' ').strip.split(" ")
 	      if line_number == 1 and line[0] != @init_bitmap # if the first commans is not "I"
-	      	return "First command must be 'I' to initialize the bitmap."
+	      	@errors_found_in_file << "First command must be 'I' to initialize the bitmap."
+	      	return
 	      end
 	  	end
   	end
