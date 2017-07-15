@@ -79,6 +79,7 @@ describe FileManager do |example|
 	end
 
 	it "prints the errors" do 
+		
 		@f= FileManager.new("./spec/spec_examples/clear_show_cmds_wrong_params.txt")
 		@f.read_file
 		expected_errors = "Wrong number of parameteres.\nWrong number of parameteres.\n"
@@ -88,7 +89,7 @@ describe FileManager do |example|
 	it "should not have any errors" do
 		@f= FileManager.new("./spec/spec_examples/correct_commands.txt")
 		@f.read_file
-		expect { @f.errors_found_in_file }.to be_empty
+		expect(@f.errors_found_in_file).to be_empty
 	end
 
 end

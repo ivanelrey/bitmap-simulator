@@ -2,7 +2,7 @@ class FileManager
 	require 'json'
 	attr_accessor :init_colour, :init_bitmap, :colour_pixel, :draw_vertical_segment,
                   :draw_horizontal_segment, :show_command, :clear, :max_rows, :max_columns, :file,
-                  :errors_found_in_file
+                  :errors_found_in_file, :given_rows_number, :given_cols_number
 
 	def initialize(file)
 		@file = file
