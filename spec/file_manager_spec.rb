@@ -65,7 +65,7 @@ describe FileManager do |example|
 		expect(@f.errors_found_in_file[0]).to eq("Wrong number of parameteres.")
 	end
 
-	it "adds error if vertical segment command has wrong colour params" do 
+	it "adds error if horizontal segment command has wrong colour params" do 
 		@f= FileManager.new("./spec/spec_examples/horizontal_cmd_wrong_colour_param.txt")
 		@f.read_file
 		expect(@f.errors_found_in_file[0]).to eq("Param for colour must be a Capital letter (A .. Z).")
@@ -78,18 +78,33 @@ describe FileManager do |example|
 		expect(@f.errors_found_in_file[1]).to eq("Wrong number of parameteres.")
 	end
 
-	it "prints the errors" do 
-		
-		@f= FileManager.new("./spec/spec_examples/clear_show_cmds_wrong_params.txt")
-		@f.read_file
-		expected_errors = "Wrong number of parameteres.\nWrong number of parameteres.\n"
-		expect { @f.show_errors }.to output(expected_errors).to_stdout
-	end
-
 	it "should not have any errors" do
 		@f= FileManager.new("./spec/spec_examples/correct_commands.txt")
 		@f.read_file
 		expect(@f.errors_found_in_file).to be_empty
+	end
+
+	it "deletes empty lines from the file" do 
+		out_file = File.new("./spec/spec_examples/odd_empty_lines.txt", "w+")
+		out_file.puts("    \n")
+		out_file.puts("\n")
+		out_file.puts("I 5 6")
+		out_file.puts("\n")
+		out_file.puts("    \n")
+		out_file.puts("    \n")
+		out_file.puts("S")
+		out_file.close
+		@f= FileManager.new("./spec/spec_examples/odd_empty_lines.txt")
+		@f.remove_blank_lines_from_file
+		count = IO.readlines(@f.file).size  
+		expect(count).to eq(2) 
+	end
+
+	it "prints the errors" do 
+		@f= FileManager.new("./spec/spec_examples/clear_show_cmds_wrong_params.txt")
+		@f.read_file
+		expected_errors = "Wrong number of parameteres.\nWrong number of parameteres.\n"
+		expect { @f.show_errors }.to output(expected_errors).to_stdout
 	end
 
 end

@@ -8,6 +8,7 @@ class FileManager
 		@file = file
 		@errors_found_in_file = Array.new
 		init_settings
+		remove_blank_lines_from_file
 	end
 
 	def init_settings
@@ -25,6 +26,10 @@ class FileManager
 	    @init_colour = data["init_colour"]
 	    @max_columns = data["max_columns"]
     	@max_rows = data["max_rows"]
+  	end
+
+  	def remove_blank_lines_from_file
+    	File.write(@file, File.readlines(@file).reject { |s| s.strip.empty? }.join)
   	end
 
   	def read_file
