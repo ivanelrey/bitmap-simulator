@@ -24,4 +24,14 @@ class FileManager
 	    @max_columns = data["max_columns"]
     	@max_rows = data["max_rows"]
   	end
+
+  	def read_file
+  		File.open(@file, "r").each_with_index do |line, line_number|
+	      line_number = line_number + 1
+	      line = line.gsub(/\s+/m, ' ').strip.split(" ")
+	      if line_number == 1 and line[0] != @init_bitmap # if the first commans is not "I"
+	      	return "First command must be 'I' to initialize the bitmap."
+	      end
+	  	end
+  	end
 end

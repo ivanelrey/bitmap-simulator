@@ -1,14 +1,16 @@
 require 'spec_helper'
 require './lib/file_manager.rb'
 
-describe FileManager do 
+describe FileManager do |example|
 
 	before do 
-		@f= FileManager.new("./lib/show.txt")
+		unless RSpec.current_example.metadata[:skip_before]
+			@f= FileManager.new("./examples/show.txt")
+		end
 	end
 
 	it "initializes init variables" do 
-		expect(@f.file).to eq("./lib/show.txt")
+		expect(@f.file).to eq("./examples/show.txt")
 		expect(@f.init_colour).to eq("O")
 		expect(@f.init_bitmap).to eq("I")
 		expect(@f.clear).to eq("C")
@@ -18,6 +20,11 @@ describe FileManager do
 		expect(@f.show_command).to eq("S")
 		expect(@f.max_rows).to eq(250)
 		expect(@f.max_columns).to eq(250)
+	end
+
+	it "stops reading the file because the first command is not 'I'(to initialize the bitmap).", :skip_before do 
+		@f1= FileManager.new("./spec/spec_examples/the_first_cmd_not_init.txt")
+		expect(@f1.read_file).to eq("First command must be 'I' to initialize the bitmap.")
 	end
 
 end
