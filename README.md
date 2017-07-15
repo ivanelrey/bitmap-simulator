@@ -25,6 +25,11 @@ gem 'json'
 # Install Gems
 ```sh
 bundle install
+
+# Run RSpec examples
+```sh
+bundle exec rspec
+```
 ```
 
 # Supported Commands
@@ -37,6 +42,15 @@ bundle install
 | H | X1 X2 Y C | Draw a horizontal segment of colour C in row Y between columns X1 and X2 (inclusive). |
 | C | - | Clears the table, setting all pixels to white (O). |
 | S | - | Show the contents of the current image. |
+
+### Extra Command
+
+| Command | Parameters | Does |
+| ------ | ------ | ------ |
+| D | X1 Y1 X2 Y2 I | Draw a diagonal line of colour C, start from X1,Y1 and end at X2,Y2 |
+
+Note:
+If given pixels don't create a diagonal line it will prin error.
 
 
 # Program input
@@ -55,6 +69,7 @@ I 5 6
 L 1 3 A
 V 2 3 6 W
 H 3 5 2 Z
+D 3 6 1 4 F
 S
 ```
 
@@ -63,8 +78,8 @@ Output:
 OOOOO
 OOZZZ
 AWOOO
-OWOOO
-OWOOO
-OWOOO
+FWOOO
+OFOOO
+OWFOO
 ```
 
