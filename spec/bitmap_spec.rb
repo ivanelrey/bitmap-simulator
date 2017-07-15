@@ -64,4 +64,32 @@ describe Bitmap do
 	    expect { @bitmap.print_bitmap }.to output(expected_bitmap_format).to_stdout
 	end
 	
+	it "draws a diagonal segment from left/top to right/bottom" do 
+		@bitmap.create_bitmap
+		@bitmap.draw_diagonal_segment(1,2,5,6,'I')
+		expected_bitmap_format = "OOOOO\nIOOOO\nOIOOO\nOOIOO\nOOOIO\nOOOOI\n"
+	    expect { @bitmap.print_bitmap }.to output(expected_bitmap_format).to_stdout
+	end
+
+	it "draws a diagonal segment from right/bottom to left/top" do 
+		@bitmap.create_bitmap
+		@bitmap.draw_diagonal_segment(5,6,1,2,'I')
+		expected_bitmap_format = "OOOOO\nIOOOO\nOIOOO\nOOIOO\nOOOIO\nOOOOI\n"
+	    expect { @bitmap.print_bitmap }.to output(expected_bitmap_format).to_stdout
+	end
+
+	it "draws a diagonal segment from left/bottom to right/top" do 
+		@bitmap.create_bitmap
+		@bitmap.draw_diagonal_segment(1,6,5,2,'I')
+		expected_bitmap_format = "OOOOO\nOOOOI\nOOOIO\nOOIOO\nOIOOO\nIOOOO\n"
+	    expect { @bitmap.print_bitmap }.to output(expected_bitmap_format).to_stdout
+	end
+
+	it "draws a diagonal segment from right/top to left/bottom" do 
+		@bitmap.create_bitmap
+		@bitmap.draw_diagonal_segment(5,2,1,6,'I')
+		expected_bitmap_format = "OOOOO\nOOOOI\nOOOIO\nOOIOO\nOIOOO\nIOOOO\n"
+	    expect { @bitmap.print_bitmap }.to output(expected_bitmap_format).to_stdout
+	end
+
 end

@@ -33,6 +33,28 @@ class Bitmap
 	    end
 	end
 
+	def draw_diagonal_segment(x1, y1, x2, y2, colour)
+		if x1 > x2 and y1 > y2
+			x1,x2 = x2,x1
+			y1,y2 = y2,y1
+		elsif x1 > x2 and y1 < y2
+			x1,x2 = x2,x1
+			y1,y2 = y2,y1
+		end
+			
+		if x1 < x2 and y1 < y2
+			for pixel_position in (x1..x2)
+	      		draw_pixel(pixel_position,y1,colour)
+	      		y1 = y1 + 1
+	      	end
+	    elsif x1 < x2 and y1 > y2
+	    	for pixel_position in (x1..x2)
+	      		draw_pixel(pixel_position,y1,colour)
+	      		y1 = y1 - 1
+	      	end
+	    end
+	end
+
 	def clear_bitmap
 		create_bitmap # Reinitilialize the bitmap
 	end
