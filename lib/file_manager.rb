@@ -2,7 +2,7 @@ class FileManager
 	require 'json'
 	attr_accessor :init_colour, :init_bitmap, :colour_pixel, :draw_vertical_segment,
                   :draw_horizontal_segment, :show_command, :clear, :max_rows, :max_columns, :file,
-                  :errors_found_in_file, :given_rows_number, :given_cols_number
+                  :errors_found_in_file, :given_rows_number, :given_cols_number, :show_command_included
 
 	def initialize(file)
 		@file = file
@@ -113,6 +113,7 @@ class FileManager
 
 	def check_show_command(line, line_number)
 	    check_params_size(line.size - 1, 0, line_number)
+	    @show_command_included = true
 	end
 
 	def check_params_size(params_size, valid_params_size, line_number)

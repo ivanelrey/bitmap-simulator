@@ -12,6 +12,8 @@ class BitmapEditor
     if f.errors_found_in_file.any?
       f.show_errors
       exit
+    elsif !f.show_command_included
+      puts "To print your created bitmap you must add the command 'S'."
     else
       execute_commands(file,f)
     end 
