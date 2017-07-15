@@ -46,9 +46,9 @@ class FileManager
 		when @colour_pixel
 	  		check_colour_pixel_command(line, line_number)
 		when @draw_vertical_segment
-	  		#check for the draw vertical segment command
+	  		check_draw_vertical_segment_command(line, line_number)
 		when @draw_horizontal_segment
-	  		#check for the draw vertical segment command
+	  		check_draw_horizontal_segment_command(line, line_number)
 		when @clear
 	  		#check for the clear command
 		when @show_command
@@ -81,6 +81,24 @@ class FileManager
 	      check_param_is_int_and_in_range(1, @given_cols_number, line_number, line[1])
 	      check_param_is_int_and_in_range(1, @given_rows_number, line_number, line[2])
 	      check_colour_param_is_capital_letter(line[3], line_number)
+	    end
+  	end
+
+  	def check_draw_vertical_segment_command(line, line_number)
+	    if check_params_size(line.size - 1, 4, line_number) and @bitmap_initialized
+	      check_param_is_int_and_in_range(1, @given_cols_number, line_number, line[1])
+	      check_param_is_int_and_in_range(1, @given_rows_number, line_number, line[2])
+	      check_param_is_int_and_in_range(1, @given_rows_number, line_number, line[3])
+	      check_colour_param_is_capital_letter(line[4], line_number)
+	    end
+  	end
+
+  	def check_draw_horizontal_segment_command(line, line_number)
+	    if check_params_size(line.size - 1, 4, line_number) and @bitmap_initialized
+	      check_param_is_int_and_in_range(1, @given_cols_number, line_number, line[1])
+	      check_param_is_int_and_in_range(1, @given_cols_number, line_number, line[2])
+	      check_param_is_int_and_in_range(1, @given_rows_number, line_number, line[3])
+	      check_colour_param_is_capital_letter(line[4], line_number)
 	    end
   	end
 

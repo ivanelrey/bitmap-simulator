@@ -64,4 +64,16 @@ describe FileManager do |example|
 		expect(@f.errors_found_in_file[0]).to eq("Param for colour must be a Capital letter (A .. Z).")
 	end
 
+	it "adds error if vertical segment command has wrong params", :skip_before do 
+		@f= FileManager.new("./spec/spec_examples/vertical_cmd_wrong_params.txt")
+		@f.read_file
+		expect(@f.errors_found_in_file[0]).to eq("Wrong number of parameteres.")
+	end
+
+	it "adds error if vertical segment command has wrong colour params", :skip_before do 
+		@f= FileManager.new("./spec/spec_examples/horizontal_cmd_wrong_colour_param.txt")
+		@f.read_file
+		expect(@f.errors_found_in_file[0]).to eq("Param for colour must be a Capital letter (A .. Z).")
+	end
+
 end
