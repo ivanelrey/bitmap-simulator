@@ -47,7 +47,7 @@ bundle exec rspec
 
 | Command | Parameters | Does |
 | ------ | ------ | ------ |
-| D | X1 Y1 X2 Y2 I | Draw a diagonal line of colour C, start from X1,Y1 and end at X2,Y2 |
+| D | X1 Y1 X2 Y2 I | Draw a diagonal line of colour I, start from X1,Y1 and end at X2,Y2 |
 
 Note:
 If given pixels don't create a diagonal line it will prin error.
