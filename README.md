@@ -86,3 +86,6 @@ OFOOO
 OWFOO
 ```
 
+# Demo application
+
+[https://demo-bitmap-editor.herokuapp.com/](https://demo-bitmap-editor.herokuapp.com/)
