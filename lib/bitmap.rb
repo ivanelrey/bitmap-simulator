@@ -55,6 +55,64 @@ class Bitmap
 	    end
 	end
 
+	#def fill_command(x1, y1 , colour)
+	#	old = @bitmap[y1-1][x1-1]
+	#	for row_pixel in (x1..@rows_number)
+	#		if old == @bitmap[y1-1][row_pixel-1]
+	#      		#@bitmap[y1.to_i-1][row_pixel.to_i-1].replace colour
+	#      	end
+	 #   end
+#
+	 #   for col_pixel in (y1..@cols_number)
+	 #   	puts old
+	##    	puts @bitmap[col_pixel-1][x1-1]
+	#		if old == @bitmap[col_pixel-1][x1-1]
+	 #     		@bitmap[col_pixel.to_i-1][x1.to_i-1].replace  colour
+	      		
+	 #     	end
+	 #   end
+	#end
+
+	#def fill_command(x1, y1 , colour)
+	#	@bitmap.each_with_index do |row, index_x|
+	#      row.each_with_index do |cell, index_y|
+	#      	if index_y == y1-1 or index_x == x1-1
+	 #       	if cell == @bitmap[y1-1][x1-1]
+	#        		#cell.replace colour
+	        		#cell.replace colour
+	  #      	end
+	 #   	end
+	  #    end
+	  #  end
+	#end
+
+	#def fill_command(x1, y1 , colour)
+		#ver = @bitmap.map{|a| a[y1 - 1]}
+		#puts ver
+		#ver.each do |cell|
+		#	if cell == @bitmap[y1-1][x1-1]
+		#		cell = colour
+		#	end
+		#end
+	#	@bitmap.map{|a| a[y1 - 1]}.replace ver
+	#end
+
+	def fill_command(x1, y1 , colour)
+		old = bitmap[y1-1][x1-1]
+		@bitmap.each_with_index do |row,indexx|
+	      row.each_with_index do |cell,indexy|
+	      	if indexx == y1 -1 
+	      		puts cell
+	        	if cell == old
+	        		if indexx == y1-1
+	        			@bitmap[indexy][indexx] = colour
+	        		end
+	        	end
+	      	end
+	      end
+	    end
+	end
+
 	def clear_bitmap
 		create_bitmap # Reinitilialize the bitmap
 	end
