@@ -102,7 +102,6 @@ class Bitmap
 		@bitmap.each_with_index do |row,indexx|
 	      row.each_with_index do |cell,indexy|
 	      	if indexx == y1 -1 
-	      		puts cell
 	        	if cell == old
 	        		#if indexx == y1-1
 	        			@bitmap[indexx][indexy] = colour
@@ -114,7 +113,6 @@ class Bitmap
 	    @bitmap.each_with_index do |row,indexx|
 	      row.each_with_index do |cell,indexy|
 	      	if indexy == x1 -1 
-	      		puts cell
 	        	if cell == old
 	        		#if indexx == y1-1
 	        			@bitmap[indexx][indexy] = colour
