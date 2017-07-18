@@ -60,7 +60,6 @@ class Bitmap
 	end
 
 	def print_bitmap
-		puts "------------------------- Command 'S' executed -------------------------"
     	@bitmap.each do |row|
 	      row.each do |cell|
 	        print cell 

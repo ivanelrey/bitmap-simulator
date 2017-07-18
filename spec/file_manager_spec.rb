@@ -86,7 +86,7 @@ describe FileManager do |example|
 		out_file.close
 		@f= FileManager.new("./spec/test.txt")
 		@f.read_file
-		expect(@f.errors_found_in_file[0]).to eq("ERROR in line 1: Wrong param 'S'.The current param must be an integer. ")
+		expect(@f.errors_found_in_file[0]).to eq("ERROR in line 1: Wrong param 'S'.The current param must be a positive integer. ")
 	end
 
 	it "adds error if colour param is not from 'A' to 'Z'" do 

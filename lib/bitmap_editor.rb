@@ -39,6 +39,7 @@ class BitmapEditor
       when f.clear
         b.clear_bitmap
       when f.show_command
+        puts "------------------------- Command 'S' executed -------------------------"
         b.print_bitmap
       end
     end
