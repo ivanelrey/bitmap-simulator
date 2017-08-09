@@ -83,7 +83,7 @@ class FileManager
       		check_param_is_int_and_in_range(1, @max_rows, line_number, line[2])
       		@given_rows_number = line[2].to_i
 		    @given_cols_number = line[1].to_i
-		    @errors_found_in_file.any? ? @bitmap_initialized = false : @bitmap_initialized = true
+		    @bitmap_initialized = @errors_found_in_file.empty?
     	end
 	end
 
@@ -179,11 +179,9 @@ class FileManager
   	end
 
   	def show_errors
-	    if @errors_found_in_file.any?
-	      @errors_found_in_file.each do | error |
-	        puts error
-	      end
-	    end
+      @errors_found_in_file.each do | error |
+        puts error
+      end
 	end
 
 	Errors = {
