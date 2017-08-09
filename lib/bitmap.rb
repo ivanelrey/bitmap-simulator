@@ -57,29 +57,29 @@ class Bitmap
 	    end
 	end
 
-	def fill_command(x1, y1, colour, old = nil)
+	def fill_command(x1, y1, colour)
 		old = bitmap[y1-1][x1-1]
 		draw_pixel(x1,y1,colour)
 
 		if x1 >= 1 and x1 <= @cols_number and y1 >= 1 and y1 <= @rows_number
 			#right
 			if (x1 + 1) <= @cols_number  and bitmap[y1-1][x1] == old
-				fill_command(x1+1, y1 , colour, old)
+				fill_command(x1+1, y1 , colour)
 			end
 
 			#left
 			if (x1 - 1) >= 1  and bitmap[y1-1][x1 - 2] == old
-				fill_command(x1-1, y1 , colour, old )
+				fill_command(x1-1, y1 , colour )
 			end
 
 			#down
 			if (y1 + 1) <= @rows_number  and bitmap[y1][x1 - 1] == old
-				fill_command(x1, y1 + 1 , colour, old )
+				fill_command(x1, y1 + 1 , colour )
 			end
 
 			#up
 			if (y1 - 1) >= 1  and bitmap[y1 - 2][x1 - 1] == old
-				fill_command(x1, y1 - 1 , colour, old )
+				fill_command(x1, y1 - 1 , colour )
 			end
 		end
 	end
